@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "My Custom Theme - Shiv's Background",
+  "version": "1.0",
+  "description": "My personal Chrome theme with my own background image",
+  "theme": {
+    "images": {
+      "theme_ntp_background": "background1.jpg"
+    },
+    "colors": {
+      "frame": [33, 33, 33],
+      "toolbar": [50, 50, 50],
+      "tab_background_text": [255, 255, 255],
+      "ntp_background": [0, 0, 0],
+      "ntp_text": [255, 255, 255]
+    },
+    "tints": {
+      "buttons": [0.95, 0.5, 0.5]
+    }
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  }
+}
