@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Shiv's Dynamic Theme",
-  "version": "1.3",
+  "version": "1.4",
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },
