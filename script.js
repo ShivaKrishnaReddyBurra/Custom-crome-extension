@@ -1,11 +1,22 @@
-const backgrounds = ['background1.jpg', 'background2.jpg'];
-let currentIndex = 0;
-document.body.style.backgroundImage = `url(${backgrounds[0]})`;
+const numImages = 20; // Number of images (background1.jpg to background20.jpg)
+let previousIndex = -1;
 
-setInterval(() => {
-  currentIndex = (currentIndex + 1) % backgrounds.length;
-  document.body.style.backgroundImage = `url(${backgrounds[currentIndex]})`;
-}, 30000);
+function getRandomImage() {
+  let index;
+  do {
+    index = Math.floor(Math.random() * numImages) + 1; // 1 to 14
+  } while (index === previousIndex); // Avoid immediate repeat
+  previousIndex = index;
+  return `background${index}.jpg`;
+}
+
+function changeBackground() {
+  document.body.style.backgroundImage = `url(${getRandomImage()})`;
+}
+
+// Initial background and continuous change every 30 seconds
+changeBackground();
+setInterval(changeBackground, 30000);
 
 // State management
 let mouseActive = false;
@@ -19,12 +30,17 @@ const form = document.getElementById('shortcutForm');
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-window.addEventListener('resize', () => {
+// Responsive canvas setup
+function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
+
+window.addEventListener('resize', () => {
+  resizeCanvas();
+  positionShortcuts();
 });
 
 // Famous website icons mapping
@@ -77,19 +93,22 @@ function resetInactivityTimer() {
     hideShortcuts();
     plusIcon.classList.add('hidden');
     startAnimations();
-  }, 5000);
+  }, 35000);
 }
 
 document.addEventListener('mousemove', resetInactivityTimer);
 document.addEventListener('click', resetInactivityTimer);
 document.addEventListener('keypress', resetInactivityTimer);
 
-// Shortcut positioning
+// Shortcut positioning - responsive
 function positionShortcuts() {
   const shortcuts = document.querySelectorAll('.shortcut');
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
-  const radius = 150;
+  
+  // Responsive radius based on screen size
+  const baseRadius = Math.min(window.innerWidth, window.innerHeight) * 0.2;
+  const radius = Math.max(120, Math.min(180, baseRadius));
   
   shortcuts.forEach((shortcut, index) => {
     const angle = (index / shortcuts.length) * 2 * Math.PI;
@@ -280,31 +299,36 @@ class Firework {
     ];
     
     const colorSet = colors[Math.floor(Math.random() * colors.length)];
-    const particleCount = 80 + Math.random() * 100;
+    // Responsive particle count based on screen size
+    const screenSize = Math.min(window.innerWidth, window.innerHeight);
+    const baseCount = screenSize < 768 ? 50 : screenSize < 1024 ? 80 : 100;
+    const particleCount = baseCount + Math.random() * 80;
     const style = Math.floor(Math.random() * 4);
     
     for (let i = 0; i < particleCount; i++) {
       let angle, speed, hue;
+      // Adjust speed based on screen size
+      const speedMultiplier = screenSize < 768 ? 0.7 : 1;
       
       switch(style) {
         case 0: // Chrysanthemum
           angle = (i / particleCount) * Math.PI * 2;
-          speed = 2 + Math.random() * 4;
+          speed = (2 + Math.random() * 4) * speedMultiplier;
           hue = colorSet[Math.floor(Math.random() * colorSet.length)];
           break;
         case 1: // Peony
           angle = Math.random() * Math.PI * 2;
-          speed = 2 + Math.random() * 5;
+          speed = (2 + Math.random() * 5) * speedMultiplier;
           hue = colorSet[Math.floor(Math.random() * colorSet.length)];
           break;
         case 2: // Willow
           angle = Math.random() * Math.PI * 2;
-          speed = 1 + Math.random() * 3;
+          speed = (1 + Math.random() * 3) * speedMultiplier;
           hue = colorSet[0];
           break;
         case 3: // Ring
           angle = (i / particleCount) * Math.PI * 2;
-          speed = 3 + Math.random() * 2;
+          speed = (3 + Math.random() * 2) * speedMultiplier;
           hue = colorSet[i % colorSet.length];
           break;
       }

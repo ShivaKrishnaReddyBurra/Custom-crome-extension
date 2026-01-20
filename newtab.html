@@ -15,7 +15,8 @@
 
     #plusIcon {
       width: 80px; height: 80px; border-radius: 50%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
       display: flex; justify-content: center; align-items: center;
       cursor: pointer; position: relative; z-index: 100;
       box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
@@ -40,11 +41,65 @@
     }
 
     #plusIcon::before {
-      width: 40px; height: 4px;
+      width: 50%; height: 5%;
     }
 
     #plusIcon::after {
-      width: 4px; height: 40px;
+      width: 5%; height: 50%;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      #plusIcon {
+        width: 60px; height: 60px;
+      }
+
+      .shortcut {
+        width: 55px; height: 55px;
+      }
+
+      .shortcut img {
+        width: 28px; height: 28px;
+      }
+
+      .shortcut-name {
+        font-size: 8px;
+      }
+
+      .modal-content {
+        padding: 30px;
+      }
+
+      .modal-content h2 {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #plusIcon {
+        width: 50px; height: 50px;
+      }
+
+      .shortcut {
+        width: 45px; height: 45px;
+      }
+
+      .shortcut img {
+        width: 22px; height: 22px;
+      }
+
+      .shortcut-name {
+        font-size: 7px;
+        max-width: 42px;
+      }
+
+      .modal-content {
+        padding: 20px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
     }
 
     .shortcut {
@@ -85,9 +140,13 @@
 
     .modal-content {
       background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-      padding: 40px; border-radius: 20px; width: 400px;
+      padding: 40px; border-radius: 20px; 
+      width: 90%;
+      max-width: 400px;
       box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
       animation: modalSlideIn 0.3s ease;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
     @keyframes modalSlideIn {
