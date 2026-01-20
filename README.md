@@ -15,7 +15,6 @@ This extension overrides the default Chrome new tab page (`chrome://newtab`) wit
 - **Fireworks Animation**: A canvas-based particle system simulating various firework styles (chrysanthemum, peony, willow, ring) with randomized colors and explosions.
 
 ## Screenshots
-*(Add screenshots here for better visualization on GitHub. Example placeholders:)*
 - ![New Tab with Shortcuts](screenshots/newtab-active.png)
 - ![Adding a Shortcut](screenshots/add-shortcut-modal.png)
 - ![Fireworks Inactivity Mode](screenshots/fireworks-mode.png)
@@ -53,12 +52,6 @@ This extension overrides the default Chrome new tab page (`chrome://newtab`) wit
 - **Dependencies**: None (pure JavaScript, HTML, CSS, and Canvas API).
 - **Storage**: Uses `localStorage` to save shortcuts as JSON. No data is sent to servers.
 - **Permissions**: No special permissions required—safe and minimal.
-
-## Development
-- **Background Images**: Add images named `background1.jpg` to `background20.jpg` to the root. Adjust `numImages` in `script.js` if needed.
-- **Custom Icons**: Uploaded icons are converted to data URLs and stored locally.
-- **Testing**: Load unpacked in Chrome and test on different screen sizes.
-- **Improvements**: Feel free to contribute! Ideas: More animation styles, theme customization, or sync across devices (would require permissions).
 
 ## Privacy and Security
 - No personal data is collected or transmitted.
