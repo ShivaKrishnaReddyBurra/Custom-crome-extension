@@ -7,7 +7,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["script.js","background*.jpg"],
+      "resources": ["script.js","images/background*.jpg"],
       "matches": ["<all_urls>"]
     }
   ]

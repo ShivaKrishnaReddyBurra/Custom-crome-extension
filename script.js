@@ -7,7 +7,7 @@ function getRandomImage() {
     index = Math.floor(Math.random() * numImages) + 1; // 1 to 14
   } while (index === previousIndex); // Avoid immediate repeat
   previousIndex = index;
-  return `background${index}.jpg`;
+  return `images/background${index}.jpg`;
 }
 
 function changeBackground() {
